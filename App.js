@@ -6,6 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>ResumeSync! Make your resume and website with the click of a button</Text>
+      <Text style={styles.text}>You fill in a form and push a button. Amazing!</Text>
       <StatusBar style="auto" />
     </View>
   );
