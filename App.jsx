@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { firebase } from "./utils/firebase";
-
-const database = firebase.database();
+import useResume from "./hooks/useResume";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,26 +16,12 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
-  const [resumeName, updateResumeNameInternal] = useState("");
+  const resumeName = useResume();
 
-  // Use callback as to not constantly recreate function definition
-  const updateResumeName = useCallback(
-    (snap) => {
-      const val = snap.val();
-      return val && updateResumeNameInternal(val);
-    },
-    [updateResumeNameInternal]
-  );
-
-  useEffect(() => {
-    const db = database.ref();
-    db.on("value", updateResumeName, window.alert);
-
-    return () => {
-      db.off("value", updateResumeName);
-    };
-  }, [updateResumeName]);
-
+  // adding if statement to load empty view if firebase has not returned data yet.
+  if (!resumeName) {
+    return <View style={styles.container} />;
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Name: {resumeName.name}</Text>
