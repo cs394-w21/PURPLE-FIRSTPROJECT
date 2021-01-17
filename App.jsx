@@ -1,10 +1,21 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useCallback, useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { firebase } from "./utils/firebase";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { util } from "prettier";
 
 const database = firebase.database();
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#000000",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    color: "#808080",
+    fontSize: 20,
+  },
+});
 
 export default function App() {
   const [resumeName, updateResumeNameInternal] = useState("");
@@ -25,7 +36,7 @@ export default function App() {
     return () => {
       db.off("value", updateResumeName);
     };
-  }, [database, updateResumeName]);
+  }, [updateResumeName]);
 
   return (
     <View style={styles.container}>
@@ -34,20 +45,6 @@ export default function App() {
       </Text>
       <Text style={styles.text}>------------------------------</Text>
       <Text style={styles.text}>Name: {resumeName.name}</Text>
-      <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#000000",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    color: "#808080",
-    fontSize: 20,
-  },
-});
