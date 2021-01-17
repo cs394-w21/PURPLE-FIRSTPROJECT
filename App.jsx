@@ -40,10 +40,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        ResumeSync: Make your resume and website with the click of a button
-      </Text>
-      <Text style={styles.text}>------------------------------</Text>
       <Text style={styles.text}>Name: {resumeName.name}</Text>
     </View>
   );
