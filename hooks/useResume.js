@@ -3,28 +3,31 @@ import { firebase } from "../utils/firebase";
 
 const database = firebase.database();
 
-const useResume = () => {
-  const [resumeName, updateResumeNameInternal] = useState("");
+const useResume = (resumeID) => {
+  const [appData, updateAppDataInternal] = useState("");
 
   // Use callback as to not constantly recreate function definition
-  const updateResumeName = useCallback(
+  const updateAppData = useCallback(
     (snap) => {
       const val = snap.val();
-      return val && updateResumeNameInternal(val);
+      return val && updateAppDataInternal(val);
     },
-    [updateResumeNameInternal]
+    [updateAppDataInternal]
   );
 
   useEffect(() => {
     const db = database.ref();
-    db.on("value", updateResumeName, window.alert);
+    db.on("value", updateAppData, window.alert);
 
     return () => {
-      db.off("value", updateResumeName);
+      db.off("value", updateAppData);
     };
-  }, [updateResumeName]);
+  }, [updateAppData]);
 
-  return resumeName;
+  return {
+    loading: !appData,
+    resume: appData && appData.resumes[resumeID],
+  };
 };
 
 export default useResume;
