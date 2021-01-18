@@ -1,0 +1,41 @@
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import PropTypes from "prop-types";
+
+const styles = StyleSheet.create({
+  container: {
+    padding: "20px",
+    textAlign: "center",
+  },
+  name: {
+    color: "black",
+    fontSize: 40,
+    padding: "5px",
+  },
+  text: {
+    color: "black",
+    fontSize: 20,
+  },
+});
+
+const BasicInfo = (props) => {
+  const { name, phone, email, location } = props;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.text}>Phone: {phone}</Text>
+      <Text style={styles.text}>Email: {email}</Text>
+      <Text style={styles.text}>Location: {location}</Text>
+    </View>
+  );
+};
+
+export const BasicInfoProps = {
+  name: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+};
+BasicInfo.propTypes = BasicInfoProps;
+
+export default BasicInfo;
