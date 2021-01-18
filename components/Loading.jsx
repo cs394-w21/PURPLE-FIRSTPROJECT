@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -14,12 +14,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const Loading = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>I am loading!</Text>
-    </View>
-  );
-};
+const Loading = () => (
+  <View style={styles.container}>
+    <Text style={styles.text}>I am loading!</Text>
+  </View>
+);
 
 export default Loading;

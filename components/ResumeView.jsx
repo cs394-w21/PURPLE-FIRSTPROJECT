@@ -1,13 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import PropTypes from "prop-types";
+import ResumeDownload from "./ResumeDownload";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#000000",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "center",
   },
   text: {
     color: "#808080",
@@ -19,6 +20,7 @@ const ResumeView = (props) => {
   const { resume } = props;
   return (
     <View style={styles.container}>
+      <ResumeDownload />
       <Text style={styles.text}>Name: {resume.name}</Text>
     </View>
   );
