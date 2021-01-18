@@ -25,54 +25,54 @@ const styles = StyleSheet.create({
   },
 });
 
-const EducationItem = (props) => {
-  const { name, start, stop, degree, description } = props;
+const ExperienceItem = (props) => {
+  const { name, start, stop, role, description } = props;
   return (
     <>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.text}>
         {start}-{stop}
       </Text>
-      <Text style={styles.text}>{degree}</Text>
+      <Text style={styles.text}>{role}</Text>
       <Text style={styles.text}>{description}</Text>
     </>
   );
 };
 
-const EducationItemProps = {
+const ExperienceItemProps = {
   name: PropTypes.string.isRequired,
   start: PropTypes.string.isRequired,
   stop: PropTypes.string.isRequired,
-  degree: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 
-EducationItem.propTypes = EducationItemProps;
+ExperienceItem.propTypes = ExperienceItemProps;
 
-const Education = (props) => {
-  const { education } = props;
+const Experience = (props) => {
+  const { experience } = props;
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Education</Text>
-      {education.map((educationItem) => (
-        <EducationItem
-          key={educationItem.name}
-          name={educationItem.name}
-          start={educationItem.start}
-          stop={educationItem.stop}
-          degree={educationItem.degree}
-          description={educationItem.description}
+      <Text style={styles.title}>Experience</Text>
+      {experience.map((experienceItem) => (
+        <ExperienceItem
+          key={experienceItem.name}
+          name={experienceItem.name}
+          start={experienceItem.start}
+          stop={experienceItem.stop}
+          role={experienceItem.role}
+          description={experienceItem.description}
         />
       ))}
     </View>
   );
 };
 
-export const EducationProps = {
-  education: PropTypes.arrayOf(PropTypes.shape(EducationItemProps).isRequired)
+export const ExperienceProps = {
+  experience: PropTypes.arrayOf(PropTypes.shape(ExperienceItemProps).isRequired)
     .isRequired,
 };
 
-Education.propTypes = EducationProps;
+Experience.propTypes = ExperienceProps;
 
-export default Education;
+export default Experience;
