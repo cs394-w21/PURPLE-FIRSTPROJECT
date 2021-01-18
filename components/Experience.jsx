@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     padding: "20px",
     border: `3px solid black`,
     margin: "8px",
-    minWidth: "200px",
+    maxWidth: "310px",
   },
   title: {
     color: "black",
@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
     ...text,
     fontWeight: "bold",
   },
+  role: {
+    ...text,
+    fontStyle: "italic",
+    paddingTop: "5px",
+    paddingBottom: "5px",
+  },
 });
 
 const ExperienceItem = (props) => {
@@ -39,7 +45,7 @@ const ExperienceItem = (props) => {
       <Text style={styles.text}>
         {start}-{stop}
       </Text>
-      <Text style={styles.text}>{role}</Text>
+      <Text style={styles.role}>{role}</Text>
       <Text style={styles.text}>{description}</Text>
     </View>
   );

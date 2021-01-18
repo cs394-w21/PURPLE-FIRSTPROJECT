@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     padding: "20px",
     border: `3px solid black`,
     margin: "8px",
-    minWidth: "200px",
+    maxWidth: "310px",
   },
   itemContainer: {
     paddingTop: "16px",
@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
     ...text,
     fontWeight: "bold",
   },
+  degree: {
+    ...text,
+    fontStyle: "italic",
+    paddingTop: "5px",
+    paddingBottom: "5px",
+  },
 });
 
 const EducationItem = (props) => {
@@ -39,7 +45,7 @@ const EducationItem = (props) => {
       <Text style={styles.text}>
         {start}-{stop}
       </Text>
-      <Text style={styles.text}>{degree}</Text>
+      <Text style={styles.degree}>{degree}</Text>
       <Text style={styles.text}>{description}</Text>
     </View>
   );

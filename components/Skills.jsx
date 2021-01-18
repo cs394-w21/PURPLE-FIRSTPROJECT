@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     padding: "20px",
     border: `3px solid black`,
     margin: "8px",
-    minWidth: "200px",
+    maxWidth: "310px",
   },
   itemContainer: {
     paddingTop: "16px",
@@ -52,7 +52,7 @@ const Skills = (props) => {
   const { skills } = props;
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Skill</Text>
+      <Text style={styles.title}>Technical Skills</Text>
       {skills.map((skillItem) => (
         <SkillItem
           key={skillItem.label}

@@ -9,10 +9,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: "20px",
     width: "100%",
+    borderRadius: "15px",
+    border: "1px solid black",
   },
   text: {
     color: "black",
     fontSize: 20,
+    fontWeight: "bold",
   },
 });
 

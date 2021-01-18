@@ -13,10 +13,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
     alignItems: "center",
+    padding: "20px",
   },
   subContainer: {
     alignItems: "center",
-    maxWidth: "600px",
+  },
+  sectionContainer: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
   },
 });
 
@@ -32,9 +38,11 @@ const ResumeView = (props) => {
           email={resume.email}
           location={resume.location}
         />
-        <Education education={resume.education} />
-        <Experience experience={resume.experience} />
-        <Skills skills={resume.skills} />
+        <View style={styles.sectionContainer}>
+          <Education education={resume.education} />
+          <Experience experience={resume.experience} />
+          <Skills skills={resume.skills} />
+        </View>
       </View>
     </View>
   );
