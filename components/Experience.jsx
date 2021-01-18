@@ -11,12 +11,18 @@ const text = {
 const styles = StyleSheet.create({
   container: {
     padding: "20px",
-    textAlign: "center",
+    border: `3px solid black`,
+    margin: "8px",
+    minWidth: "200px",
   },
   title: {
     color: "black",
     fontSize: 40,
-    padding: "5px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
+  },
+  itemContainer: {
+    paddingTop: "16px",
   },
   text,
   name: {
@@ -28,14 +34,14 @@ const styles = StyleSheet.create({
 const ExperienceItem = (props) => {
   const { name, start, stop, role, description } = props;
   return (
-    <>
+    <View style={styles.itemContainer}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.text}>
         {start}-{stop}
       </Text>
       <Text style={styles.text}>{role}</Text>
       <Text style={styles.text}>{description}</Text>
-    </>
+    </View>
   );
 };
 

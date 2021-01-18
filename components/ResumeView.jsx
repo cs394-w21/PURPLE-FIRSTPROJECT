@@ -5,6 +5,7 @@ import ResumeDownload from "./ResumeDownload";
 import BasicInfo, { BasicInfoProps } from "./BasicInfo";
 import Education, { EducationProps } from "./Education";
 import Experience, { ExperienceProps } from "./Experience";
+import Skills, { SkillProps } from "./Skills";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,13 +14,17 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
   },
+  subContainer: {
+    alignItems: "center",
+    maxWidth: "600px",
+  },
 });
 
 const ResumeView = (props) => {
   const { resume } = props;
   return (
     <View style={styles.container}>
-      <View style={{ alignItems: "center", maxWidth: "600px" }}>
+      <View style={styles.subContainer}>
         <ResumeDownload />
         <BasicInfo
           name={resume.name}
@@ -29,6 +34,7 @@ const ResumeView = (props) => {
         />
         <Education education={resume.education} />
         <Experience experience={resume.experience} />
+        <Skills skills={resume.skills} />
       </View>
     </View>
   );
@@ -39,6 +45,7 @@ ResumeView.propTypes = {
     ...BasicInfoProps,
     ...EducationProps,
     ...ExperienceProps,
+    ...SkillProps,
   }).isRequired,
 };
 

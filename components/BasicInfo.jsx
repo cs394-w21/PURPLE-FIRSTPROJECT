@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Linking } from "react-native";
 import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
@@ -12,19 +12,34 @@ const styles = StyleSheet.create({
     fontSize: 40,
     padding: "5px",
   },
+  email: {
+    color: "blue",
+    textDecorationLine: "underline",
+    fontSize: 20,
+  },
   text: {
     color: "black",
     fontSize: 20,
   },
 });
 
+const useEmailLink = (email) => {
+  const gotoEmail = React.useCallback(() => {
+    Linking.openURL(`mailto:${email}`);
+  }, [email]);
+  return gotoEmail;
+};
+
 const BasicInfo = (props) => {
   const { name, phone, email, location } = props;
+  const gotoEmail = useEmailLink(email);
   return (
     <View style={styles.container}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.text}>Phone: {phone}</Text>
-      <Text style={styles.text}>Email: {email}</Text>
+      <Text style={styles.email} onPress={gotoEmail}>
+        Email: {email}
+      </Text>
       <Text style={styles.text}>Location: {location}</Text>
     </View>
   );
