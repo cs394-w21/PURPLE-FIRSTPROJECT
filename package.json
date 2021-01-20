@@ -7,7 +7,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "start:pdf": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
-    "build:pdf": "react-scripts build",
+    "build:pdf": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "react-scripts test"
   },
   "husky": {
