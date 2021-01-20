@@ -11,12 +11,9 @@ const Pdf = () => {
   return (
     <div className="pdf-container">
       <PDFViewer width="100%" height="700px">
-        <Resume loading={loading} resume={resume} />
+        <Resume resume={resume} />
       </PDFViewer>
-      <PDFDownloadLink
-        document={<Resume loading={loading} resume={resume} />}
-        fileName="resume.pdf"
-      >
+      <PDFDownloadLink document={<Resume />} fileName="resume.pdf">
         {ResumeDownloader}
       </PDFDownloadLink>
     </div>
