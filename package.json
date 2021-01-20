@@ -5,7 +5,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "start:pdf": "react-scripts start",
+    "build:pdf": "react-scripts build",
+    "test": "react-scripts test"
   },
   "husky": {
     "hooks": {
@@ -41,8 +44,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-web": "~0.13.12",
-    "react-pdf": "^5.1.0"
+    "react-scripts": "4.0.1",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
