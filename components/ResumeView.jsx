@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import PropTypes from "prop-types";
 import ResumeDownload from "./ResumeDownload";
 import BasicInfo, { BasicInfoProps } from "./BasicInfo";
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
 const ResumeView = (props) => {
   const { resume } = props;
   return (
-    <View style={styles.container}>
-      <View style={styles.subContainer}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.subContainer}>
         <ResumeDownload resume={resume} />
         <BasicInfo
           name={resume.name}
@@ -47,8 +47,8 @@ const ResumeView = (props) => {
           <Experience experience={resume.experience} />
           <Skills skills={resume.skills} />
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 /* eslint-enable react/prop-types */
