@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "start:pdf": "react-scripts start",
+    "start:pdf": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "build:pdf": "react-scripts build",
     "test": "react-scripts test"
   },
@@ -44,8 +44,9 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-web": "~0.13.12",
     "react-scripts": "4.0.1",
-    "react-native-web": "~0.13.12"
+    "web-vitals": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
@@ -56,5 +57,17 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.0.0"
   },
-  "private": true
+  "private": true,
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
