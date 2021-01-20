@@ -123,8 +123,10 @@ const Pdf = ({ resume, loading }) => {
           phone={resume.phone}
           location={resume.location}
         />
-        <ExperienceList experience={resume.experience} />
+        <Text style={section}>Education</Text>
         <EducationList education={resume.education} />
+        <Text style={section}>Experience</Text>
+        <ExperienceList experience={resume.experience} />
       </Page>
     </Document>
   );
