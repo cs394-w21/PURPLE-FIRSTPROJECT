@@ -11,7 +11,9 @@ const text = {
 const styles = StyleSheet.create({
   container: {
     padding: "20px",
-    border: `3px solid black`,
+    borderWidth: 3,
+    borderColor: "black",
+    borderStyle: "solid",
     margin: "8px",
     maxWidth: "310px",
   },

@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
-    borderRadius: "15px",
-    border: "1px solid black",
+    borderRadius: 15,
   },
   text: {
     color: "black",
