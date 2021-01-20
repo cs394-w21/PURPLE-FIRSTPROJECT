@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
     alignItems: "center",
-    padding: "20px",
+    padding: 20,
   },
   subContainer: {
     alignItems: "center",

@@ -5,26 +5,26 @@ import PropTypes from "prop-types";
 const text = {
   color: "black",
   fontSize: 20,
-  padding: "2px",
+  padding: 2,
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: "20px",
+    padding: 20,
     borderWidth: 3,
     borderColor: "black",
     borderStyle: "solid",
-    margin: "8px",
-    maxWidth: "310px",
+    margin: 8,
+    maxWidth: 310,
   },
   itemContainer: {
-    paddingTop: "16px",
+    paddingTop: 16,
   },
   title: {
     color: "black",
     fontSize: 40,
-    paddingTop: "5px",
-    paddingBottom: "5px",
+    paddingTop: 5,
+    paddingBottom: 5,
   },
   text,
   name: {
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
   degree: {
     ...text,
     fontStyle: "italic",
-    paddingTop: "5px",
-    paddingBottom: "5px",
+    paddingTop: 5,
+    paddingBottom: 5,
   },
 });
 

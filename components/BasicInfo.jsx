@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   container: {
-    padding: "20px",
+    padding: 20,
     textAlign: "center",
   },
   name: {
     color: "black",
     fontSize: 40,
-    padding: "5px",
+    padding: 5,
   },
   email: {
     color: "blue",

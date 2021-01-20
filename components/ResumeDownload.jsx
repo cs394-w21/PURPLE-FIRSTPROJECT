@@ -22,7 +22,9 @@ const styles = StyleSheet.create({
  */
 /* eslint-disable react/prop-types */
 const ResumeDownload = (props) => {
+  if (typeof document === "undefined") return null;
   const { resume } = props;
+  console.log(resume);
   return (
     <View style={styles.buttonContainer}>
       <Button style={styles.button} title="Download Resume" />
