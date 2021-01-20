@@ -3,7 +3,7 @@ import { StyleSheet, Button, View } from "react-native";
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    maxWidth: "600px",
+    maxWidth: 600,
     width: "100%",
   },
   button: {
