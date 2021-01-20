@@ -1,5 +1,5 @@
 import React from "react";
-import useResume from "./hooks/useResume";
+import useResume from "./src/hooks/useResume";
 import Loading from "./components/Loading";
 import ResumeView from "./components/ResumeView";
 

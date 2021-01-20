@@ -14,4 +14,5 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+// eslint-disable-next-line import/prefer-default-export
 export { firebase };
