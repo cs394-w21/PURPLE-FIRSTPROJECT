@@ -26,12 +26,16 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * TODO: Figure out how get resume typed properly
+ */
+/* eslint-disable react/prop-types */
 const ResumeView = (props) => {
   const { resume } = props;
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>
-        <ResumeDownload />
+        <ResumeDownload resume={resume} />
         <BasicInfo
           name={resume.name}
           phone={resume.phone}
@@ -47,14 +51,6 @@ const ResumeView = (props) => {
     </View>
   );
 };
-
-ResumeView.propTypes = {
-  resume: PropTypes.shape({
-    ...BasicInfoProps,
-    ...EducationProps,
-    ...ExperienceProps,
-    ...SkillProps,
-  }).isRequired,
-};
+/* eslint-enable react/prop-types */
 
 export default ResumeView;

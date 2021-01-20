@@ -1,13 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Button, View } from "react-native";
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    maxWidth: "600px",
+    width: "100%",
+  },
   button: {
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: "cyan",
-    textAlign: "center",
-    padding: "20px",
     width: "100%",
     borderRadius: "15px",
     border: "1px solid black",
@@ -19,11 +18,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const ResumeDownload = () => (
-  // TODO: add OnPressHandler for View
-  <View style={styles.button}>
-    <Text style={styles.text}>Download Resume</Text>
-  </View>
-);
+/**
+ * TODO: Figure out how get resume typed properly
+ */
+/* eslint-disable react/prop-types */
+const ResumeDownload = (props) => {
+  const { resume } = props;
+  return (
+    <View style={styles.buttonContainer}>
+      <Button style={styles.button} title="Download Resume" />
+    </View>
+  );
+};
+/* eslint-enable react/prop-types */
 
 export default ResumeDownload;
