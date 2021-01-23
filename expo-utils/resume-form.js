@@ -1,11 +1,30 @@
 import React from "react";
 import * as Yup from "yup";
+import { firebase } from "../src/utils/firebase";
 
-export const useResumeForm = () => {
-  const submitForm = React.useCallback((formValues) => {
-    // eslint-disable-next-line no-console
-    console.log(formValues);
-  }, []);
+const intoFirebaseObject = (array) =>
+  array.reduce((acc, el, index) => ({ ...acc, [index]: el }), {});
+
+const mapFormToDb = (formValues) => ({
+  ...formValues,
+  experience: intoFirebaseObject(formValues.experience),
+  education: intoFirebaseObject(formValues.education),
+  skills: intoFirebaseObject(formValues.skills),
+});
+
+const database = firebase.database();
+
+export const useResumeForm = (resumeId) => {
+  const submitForm = React.useCallback(
+    (formValues) => {
+      // eslint-disable-next-line no-console
+      console.log(resumeId);
+      console.log(mapFormToDb(formValues));
+      database.ref(`/resumes/${resumeId}`).set(mapFormToDb(formValues));
+      console.log("this ran");
+    },
+    [resumeId]
+  );
   return {
     submitForm,
   };
