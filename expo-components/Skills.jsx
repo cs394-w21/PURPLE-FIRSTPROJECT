@@ -3,12 +3,14 @@ import { View, Button, Text } from "react-native";
 import { FieldArray, useField } from "formik";
 import FormField from "./FormField";
 import styles from "../expo-utils/styles";
+import { v4 as uuid } from "uuid";
 
 const Skill = (props) => {
   const { skill, index, remove } = props;
   const removeItem = React.useCallback(() => {
     remove(index);
   }, [index]);
+  console.log(skill);
   return (
     <View style={styles.skillPair}>
       <FormField label="Skill Label" name={`skills[${index}].label`} />
@@ -20,7 +22,6 @@ const Skill = (props) => {
 
 const Skills = () => {
   const [{ value }] = useField("skills");
-  const [counter, setCounter] = React.useState(value.length);
   return (
     <View style={styles.skillContainer}>
       <FieldArray
@@ -31,7 +32,7 @@ const Skills = () => {
               return (
                 <Skill
                   remove={arrayHelpers.remove}
-                  key={skill.label || `Skill ${index}`}
+                  key={skill.id}
                   skill={skill}
                   index={index}
                 />
@@ -42,6 +43,7 @@ const Skills = () => {
                 arrayHelpers.push({
                   label: "",
                   value: "",
+                  id: uuid(),
                 })
               }
               title="Add skill"
