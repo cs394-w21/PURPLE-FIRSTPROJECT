@@ -1,36 +1,21 @@
 import React from "react";
-import { View, Button, TextInput } from "react-native";
-import { Formik, Form, useFormikContext, useField } from "formik";
+import { View, Button } from "react-native";
+import { Formik, Form, useFormikContext } from "formik";
 import styles from "../expo-utils/styles";
 import { useResumeForm, resumeSchema } from "../expo-utils/resume-form";
+import FormField from "./FormField";
 
 const FormShell = (props) => {
   const { resume, children } = props;
-  console.log("in form shell", resume);
   const { submitForm } = useResumeForm("unique-ID");
   return (
     <Formik
       validationSchema={resumeSchema}
-      initialValues={{
-        email: resume.email,
-      }}
+      initialValues={resume}
       onSubmit={submitForm}
     >
       <Form>{children}</Form>
     </Formik>
-  );
-};
-
-const FormInput = (props) => {
-  const { name } = props;
-  const [field, meta, helpers] = useField(name);
-  console.log("field is", field, "helpers are", helpers, "meta is", meta);
-  return (
-    <TextInput
-      value={field.value}
-      onChangeText={(text) => helpers.setValue(text)}
-      onBlur={helpers.setTouched}
-    />
   );
 };
 
@@ -44,7 +29,7 @@ const ResumeForm = (props) => {
   return (
     <View style={styles.container}>
       <FormShell resume={resume}>
-        <FormInput name="email" value={resume.email} />
+        <FormField label="Name" name="name" />
         <SubmitButton />
       </FormShell>
     </View>

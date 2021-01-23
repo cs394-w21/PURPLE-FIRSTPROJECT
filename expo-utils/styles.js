@@ -6,5 +6,13 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignSelf: "stretch",
   },
+  formLabel: {
+    paddingRight: 10,
+  },
+  formField: {
+    borderColor: "black",
+    borderWidth: 1,
+    padding: 10,
+  },
   container: {},
 });
