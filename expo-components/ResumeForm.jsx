@@ -30,6 +30,8 @@ const ResumeForm = (props) => {
     <View style={styles.container}>
       <FormShell resume={resume}>
         <FormField label="Name" name="name" />
+        <FormField label="Email" name="email" />
+        <FormField label="Phone" name="phone" />
         <SubmitButton />
       </FormShell>
     </View>
