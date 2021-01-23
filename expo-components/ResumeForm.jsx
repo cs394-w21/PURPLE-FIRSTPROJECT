@@ -3,7 +3,11 @@ import { Text, View, ScrollView, SafeAreaView, Button } from "react-native";
 import { Formik, useFormikContext } from "formik";
 import PropTypes from "prop-types";
 import styles from "../expo-utils/styles";
-import { useResumeForm, resumeSchema } from "../expo-utils/resume-form";
+import {
+  useResumeForm,
+  resumeSchema,
+  defaultInitialValues,
+} from "../expo-utils/resume-form";
 import BasicInfo from "./BasicInfo";
 import Skills from "./Skills";
 import Education from "./Education";
@@ -47,8 +51,9 @@ const FormShell = (props) => {
   return (
     <Formik
       validationSchema={resumeSchema}
-      initialValues={resume}
+      initialValues={resume || defaultInitialValues}
       onSubmit={submitForm}
+      validateOnChange={false}
     >
       <>{children}</>
     </Formik>

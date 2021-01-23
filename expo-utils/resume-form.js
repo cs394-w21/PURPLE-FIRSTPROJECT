@@ -66,3 +66,13 @@ export const resumeSchema = Yup.object().shape({
   experience: experienceSchema,
   skills: skillSchema,
 });
+
+export const defaultInitialValues = {
+  name: "",
+  email: "",
+  location: "",
+  phone: "",
+  education: [],
+  experience: [],
+  skills: [],
+};
