@@ -2,9 +2,9 @@ import React from "react";
 import * as Yup from "yup";
 
 export const useResumeForm = () => {
-  const submitForm = React.useCallback(() => {
+  const submitForm = React.useCallback((formValues) => {
     // eslint-disable-next-line no-console
-    console.log("Write me!");
+    console.log(formValues);
   }, []);
   return {
     submitForm,
