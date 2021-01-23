@@ -6,6 +6,8 @@ import styles from "../expo-utils/styles";
 import { useResumeForm, resumeSchema } from "../expo-utils/resume-form";
 import BasicInfo from "./BasicInfo";
 import Skills from "./Skills";
+import Education from "./Education";
+import Experience from "./Experience";
 
 const resumePropTypes = PropTypes.shape({
   name: PropTypes.string.isRequired,
@@ -72,6 +74,8 @@ const ResumeForm = (props) => {
       <ScrollView contentContainerStyle={styles.container}>
         <FormShell resume={resume}>
           <BasicInfo />
+          <Education />
+          <Experience />
           <Skills />
           <SubmitButton />
         </FormShell>
