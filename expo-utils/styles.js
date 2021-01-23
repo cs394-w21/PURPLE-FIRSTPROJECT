@@ -14,5 +14,11 @@ export default StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  container: {},
+  formFieldContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  container: {
+    maxWidth: 600,
+  },
 });
