@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, SafeAreaView, Button } from "react-native";
+import { Text, View, ScrollView, SafeAreaView, Button } from "react-native";
 import { Formik, useFormikContext } from "formik";
 import PropTypes from "prop-types";
 import styles from "../expo-utils/styles";
@@ -8,6 +8,7 @@ import BasicInfo from "./BasicInfo";
 import Skills from "./Skills";
 import Education from "./Education";
 import Experience from "./Experience";
+import useViewWebsite from "../src/hooks/useViewWebsite";
 
 const resumePropTypes = PropTypes.shape({
   name: PropTypes.string.isRequired,
@@ -62,9 +63,23 @@ FormShell.propTypes = {
   ]).isRequired,
 };
 
+const FormIntro = () => {
+  const viewWebsite = useViewWebsite();
+  return (
+    <View style={styles.formIntroContainer}>
+      <Text style={styles.formTitle}>Edit Your Resume</Text>
+      <Button onPress={viewWebsite} title="View Website" />
+    </View>
+  );
+};
+
 const SubmitButton = () => {
   const { submitForm } = useFormikContext();
-  return <Button onPress={submitForm} title="save" />;
+  return (
+    <View style={styles.submitContainer}>
+      <Button onPress={submitForm} title="save" />
+    </View>
+  );
 };
 
 const ResumeForm = (props) => {
@@ -72,6 +87,7 @@ const ResumeForm = (props) => {
   return (
     <SafeAreaView style={styles.outerContainer}>
       <ScrollView contentContainerStyle={styles.container}>
+        <FormIntro />
         <FormShell resume={resume}>
           <BasicInfo />
           <Education />

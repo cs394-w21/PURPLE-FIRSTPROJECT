@@ -13,7 +13,7 @@ const ExperienceItem = (props) => {
     remove(index);
   }, [index, remove]);
   return (
-    <View style={styles.listPair}>
+    <View style={styles.listChunk}>
       <FormField label="Name" name={`experience[${index}].name`} />
       <FormField label="Start" name={`experience[${index}].start`} />
       <FormField label="Stop" name={`experience[${index}].stop`} />
@@ -22,7 +22,7 @@ const ExperienceItem = (props) => {
         label="Description"
         name={`experience[${index}].description`}
       />
-      <Button onPress={removeItem} color="red" title="Remove" />
+      <Button onPress={removeItem} title="Remove" />
     </View>
   );
 };
@@ -36,6 +36,7 @@ const Experience = () => (
   <FieldList
     name="experience"
     label="Job"
+    title="Work Experience"
     Component={ExperienceItem}
     generateNewSlice={() => ({
       name: "",

@@ -13,13 +13,13 @@ const EducationItem = (props) => {
     remove(index);
   }, [index, remove]);
   return (
-    <View style={styles.listPair}>
+    <View style={styles.listChunk}>
       <FormField label="Name" name={`education[${index}].name`} />
       <FormField label="Start" name={`education[${index}].start`} />
       <FormField label="Stop" name={`education[${index}].stop`} />
       <FormField label="Degree" name={`education[${index}].degree`} />
       <FormField label="Description" name={`education[${index}].description`} />
-      <Button onPress={removeItem} color="red" title="Remove" />
+      <Button onPress={removeItem} title="Remove" />
     </View>
   );
 };
@@ -33,6 +33,7 @@ const Education = () => (
   <FieldList
     name="education"
     label="Institution"
+    title="Education"
     Component={EducationItem}
     generateNewSlice={() => ({
       name: "",

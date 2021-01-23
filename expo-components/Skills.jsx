@@ -13,10 +13,10 @@ const Skill = (props) => {
     remove(index);
   }, [index, remove]);
   return (
-    <View style={styles.listPair}>
+    <View style={styles.listChunk}>
       <FormField label="Skill Label" name={`skills[${index}].label`} />
       <FormField label="Skill Value" name={`skills[${index}].value`} />
-      <Button onPress={removeItem} color="red" title="Remove" />
+      <Button onPress={removeItem} title="Remove" />
     </View>
   );
 };
@@ -30,6 +30,7 @@ const Skills = () => (
   <FieldList
     name="skills"
     label="Skill"
+    title="Skills"
     Component={Skill}
     generateNewSlice={() => ({
       label: "",
