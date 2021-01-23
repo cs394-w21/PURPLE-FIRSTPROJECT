@@ -27,7 +27,8 @@
       "jest": true
     },
     "rules": {
-      "react/jsx-one-expression-per-line": 0
+      "react/jsx-one-expression-per-line": 0,
+      "react/jsx-curly-newline": 0
     }
   },
   "dependencies": {

@@ -14,6 +14,13 @@ export default StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  skillContainer: {
+    backgroundColor: "lightblue",
+  },
+  skillPair: {
+    backgroundColor: "yellow",
+    margin: 20,
+  },
   formFieldContainer: {
     display: "flex",
     flexDirection: "column",
