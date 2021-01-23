@@ -1,16 +1,16 @@
 import React from "react";
-import { View, Button, Text } from "react-native";
+import { v4 as uuid } from "uuid";
+import { View, Button } from "react-native";
+import PropTypes from "prop-types";
 import { FieldArray, useField } from "formik";
 import FormField from "./FormField";
 import styles from "../expo-utils/styles";
-import { v4 as uuid } from "uuid";
 
 const Skill = (props) => {
-  const { skill, index, remove } = props;
+  const { index, remove } = props;
   const removeItem = React.useCallback(() => {
     remove(index);
-  }, [index]);
-  console.log(skill);
+  }, [index, remove]);
   return (
     <View style={styles.skillPair}>
       <FormField label="Skill Label" name={`skills[${index}].label`} />
@@ -18,6 +18,11 @@ const Skill = (props) => {
       <Button onPress={removeItem} color="red" title="Remove" />
     </View>
   );
+};
+
+Skill.propTypes = {
+  index: PropTypes.number.isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
 const Skills = () => {
@@ -28,16 +33,14 @@ const Skills = () => {
         name="skills"
         render={(arrayHelpers) => (
           <>
-            {value.map((skill, index) => {
-              return (
-                <Skill
-                  remove={arrayHelpers.remove}
-                  key={skill.id}
-                  skill={skill}
-                  index={index}
-                />
-              );
-            })}
+            {value.map((skill, index) => (
+              <Skill
+                remove={arrayHelpers.remove}
+                key={skill.id}
+                skill={skill}
+                index={index}
+              />
+            ))}
             <Button
               onPress={() =>
                 arrayHelpers.push({
