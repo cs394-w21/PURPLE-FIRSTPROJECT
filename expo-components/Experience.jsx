@@ -13,7 +13,7 @@ const ExperienceItem = (props) => {
     remove(index);
   }, [index, remove]);
   return (
-    <View style={styles.skillPair}>
+    <View style={styles.listPair}>
       <FormField label="Name" name={`experience[${index}].name`} />
       <FormField label="Start" name={`experience[${index}].start`} />
       <FormField label="Stop" name={`experience[${index}].stop`} />

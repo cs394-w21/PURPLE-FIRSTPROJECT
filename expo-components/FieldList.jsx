@@ -1,6 +1,6 @@
 import "react-native-get-random-values";
 import React from "react";
-import { View, Button } from "react-native";
+import { View, Button, useWindowDimensions } from "react-native";
 import PropTypes from "prop-types";
 import { FieldArray, useField } from "formik";
 import styles from "../expo-utils/styles";
@@ -8,8 +8,9 @@ import styles from "../expo-utils/styles";
 const FieldList = (props) => {
   const { name, label, Component, generateNewSlice } = props;
   const [{ value }] = useField(name);
+  const { width } = useWindowDimensions();
   return (
-    <View style={styles.skillContainer}>
+    <View style={{ ...styles.listContainer, width: width > 600 ? 600 : width }}>
       <FieldArray
         name={name}
         render={(arrayHelpers) => (

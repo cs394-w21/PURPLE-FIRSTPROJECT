@@ -70,7 +70,7 @@ const SubmitButton = () => {
 const ResumeForm = (props) => {
   const { resume } = props;
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.outerContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <FormShell resume={resume}>
           <BasicInfo />

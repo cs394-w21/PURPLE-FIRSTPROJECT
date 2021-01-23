@@ -13,7 +13,7 @@ const Skill = (props) => {
     remove(index);
   }, [index, remove]);
   return (
-    <View style={styles.skillPair}>
+    <View style={styles.listPair}>
       <FormField label="Skill Label" name={`skills[${index}].label`} />
       <FormField label="Skill Value" name={`skills[${index}].value`} />
       <Button onPress={removeItem} color="red" title="Remove" />
