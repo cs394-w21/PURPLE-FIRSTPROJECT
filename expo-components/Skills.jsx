@@ -3,9 +3,9 @@ import React from "react";
 import { v4 as uuid } from "uuid";
 import { View, Button } from "react-native";
 import PropTypes from "prop-types";
-import { FieldArray, useField } from "formik";
 import FormField from "./FormField";
 import styles from "../expo-utils/styles";
+import FieldList from "./FieldList";
 
 const Skill = (props) => {
   const { index, remove } = props;
@@ -26,38 +26,17 @@ Skill.propTypes = {
   remove: PropTypes.func.isRequired,
 };
 
-const Skills = () => {
-  const [{ value }] = useField("skills");
-  return (
-    <View style={styles.skillContainer}>
-      <FieldArray
-        name="skills"
-        render={(arrayHelpers) => (
-          <>
-            {value.map((skill, index) => (
-              <Skill
-                remove={arrayHelpers.remove}
-                key={skill.id}
-                skill={skill}
-                index={index}
-              />
-            ))}
-            <Button
-              onPress={() =>
-                arrayHelpers.push({
-                  label: "",
-                  value: "",
-                  id: uuid(),
-                })
-              }
-              title="Add skill"
-              color="red"
-            />
-          </>
-        )}
-      />
-    </View>
-  );
-};
+const Skills = () => (
+  <FieldList
+    name="skills"
+    label="Skill"
+    Component={Skill}
+    generateNewSlice={() => ({
+      label: "",
+      value: "",
+      id: uuid(),
+    })}
+  />
+);
 
 export default Skills;
