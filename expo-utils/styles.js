@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width } = Dimensions.get("window");
 
 export default StyleSheet.create({
   loadingContainer: {
@@ -16,6 +18,7 @@ export default StyleSheet.create({
   },
   skillContainer: {
     backgroundColor: "lightblue",
+    width: width > 600 ? 600 : width,
   },
   skillPair: {
     backgroundColor: "yellow",
@@ -24,8 +27,9 @@ export default StyleSheet.create({
   formFieldContainer: {
     display: "flex",
     flexDirection: "column",
+    width: width > 600 ? 600 : width,
   },
   container: {
-    maxWidth: 600,
+    alignItems: "center",
   },
 });
