@@ -1,3 +1,4 @@
+import "react-native-get-random-values";
 import React from "react";
 import { v4 as uuid } from "uuid";
 import { View, Button } from "react-native";
