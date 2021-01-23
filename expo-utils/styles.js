@@ -61,6 +61,10 @@ export default StyleSheet.create({
   formInputContainer: {
     paddingBottom: 10,
   },
+  errorMessage: {
+    color: "red",
+    fontWeight: "bold",
+  },
   container: {
     alignItems: "center",
   },

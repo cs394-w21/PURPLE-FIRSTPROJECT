@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Text } from "react-native";
+import styles from "../expo-utils/styles";
 
 const ErrorMessage = (props) => {
   const { error } = props;
-  return <Text>{error}</Text>;
+  return <Text style={styles.errorMessage}>{error}</Text>;
 };
 
 ErrorMessage.propTypes = {

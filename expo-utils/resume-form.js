@@ -18,10 +18,7 @@ export const useResumeForm = (resumeId) => {
   const submitForm = React.useCallback(
     (formValues) => {
       // eslint-disable-next-line no-console
-      console.log(resumeId);
-      console.log(mapFormToDb(formValues));
       database.ref(`/resumes/${resumeId}`).set(mapFormToDb(formValues));
-      console.log("this ran");
     },
     [resumeId]
   );
