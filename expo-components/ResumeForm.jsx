@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Button } from "react-native";
-import { Formik, Form, useFormikContext } from "formik";
+import { ScrollView, SafeAreaView, Button } from "react-native";
+import { Formik, useFormikContext } from "formik";
 import PropTypes from "prop-types";
 import styles from "../expo-utils/styles";
 import { useResumeForm, resumeSchema } from "../expo-utils/resume-form";
@@ -47,7 +47,7 @@ const FormShell = (props) => {
       initialValues={resume}
       onSubmit={submitForm}
     >
-      <Form>{children}</Form>
+      <>{children}</>
     </Formik>
   );
 };
@@ -68,13 +68,15 @@ const SubmitButton = () => {
 const ResumeForm = (props) => {
   const { resume } = props;
   return (
-    <View style={styles.container}>
-      <FormShell resume={resume}>
-        <BasicInfo />
-        <Skills />
-        <SubmitButton />
-      </FormShell>
-    </View>
+    <SafeAreaView>
+      <ScrollView contentContainerStyle={styles.container}>
+        <FormShell resume={resume}>
+          <BasicInfo />
+          <Skills />
+          <SubmitButton />
+        </FormShell>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
