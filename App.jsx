@@ -10,7 +10,7 @@ import useUser, { UserProvider } from "./expo-utils/useUser";
 // nervous-line.sh/josh-hoeflich
 const EditResume = () => {
   const user = useUser();
-  const { loading, resume } = useResume(user.userName);
+  const { loading, resume } = useResume(user.siteUrl);
   if (loading) return <Loading />;
   return <ResumeForm resume={resume} />;
 };
