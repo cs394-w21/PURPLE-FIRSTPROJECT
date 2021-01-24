@@ -6,9 +6,9 @@ import styles from "../expo-utils/styles";
 
 const SubmitButton = (props) => {
   const { submitForm } = useFormikContext();
-  const { title } = props;
+  const { title, style } = props;
   return (
-    <View style={styles.submitContainer}>
+    <View style={style}>
       <Button onPress={submitForm} title={title} />
     </View>
   );
@@ -16,6 +16,12 @@ const SubmitButton = (props) => {
 
 SubmitButton.propTypes = {
   title: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.any,
+};
+
+SubmitButton.defaultProps = {
+  style: styles.submitContainer,
 };
 
 export default SubmitButton;

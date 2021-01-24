@@ -58,6 +58,11 @@ export default StyleSheet.create({
     margin: 10,
     width: 200,
   },
+  loginSubmitContainer: {
+    width: 200,
+    marginTop: 10,
+    marginBottom: 10,
+  },
   formInputContainer: {
     paddingBottom: 10,
   },

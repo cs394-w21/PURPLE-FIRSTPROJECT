@@ -1,9 +1,16 @@
 import React from "react";
-import { Text } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  useWindowDimensions,
+} from "react-native";
 import { Formik, useField } from "formik";
 import * as Yup from "yup";
 import SubmitButton from "./FormSubmitButton";
 import FormField from "./FormField";
+import styles from "../expo-utils/styles";
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -28,16 +35,26 @@ const useLogin = () => {
   return login;
 };
 
+const sharedContainerStyles = {
+  padding: 25,
+  borderWidth: 1,
+  borderColor: "black",
+  margin: 25,
+};
+
 const Login = () => {
   const login = useLogin();
+  const { width } = useWindowDimensions();
   return (
     <Formik
       onSubmit={login}
       initialValues={loginInitialValues}
       validationSchema={loginValidationSchema}
     >
-      <>
-        <Text>Login</Text>
+      <View
+        style={{ ...sharedContainerStyles, width: width > 600 ? 600 : width }}
+      >
+        <Text style={styles.formTitle}>Login</Text>
         <FormField name="email" label="Email" />
         <FormField
           name="password"
@@ -47,8 +64,8 @@ const Login = () => {
           secureTextEntry
           textContentType="password"
         />
-        <SubmitButton title="Login" />
-      </>
+        <SubmitButton style={styles.loginSubmitContainer} title="Login" />
+      </View>
     </Formik>
   );
 };
@@ -57,7 +74,7 @@ const SiteUrlSetter = () => {
   const [{ value }] = useField("siteUrl");
   return (
     <>
-      <FormField name="siteUrl" label="Site URL"></FormField>
+      <FormField name="siteUrl" label="Site URL" />
       <Text>
         Your website will be hosted at {`nervous-line.surge.sh/${value || ""}`}
       </Text>
@@ -99,15 +116,17 @@ const useSignup = () => {
 
 const Signup = () => {
   const signup = useSignup();
-
+  const { width } = useWindowDimensions();
   return (
     <Formik
       onSubmit={signup}
       initialValues={signupInitialValues}
       validationSchema={signupValidationSchema}
     >
-      <>
-        <Text>Login</Text>
+      <View
+        style={{ ...sharedContainerStyles, width: width > 600 ? 600 : width }}
+      >
+        <Text style={styles.formTitle}>Sign Up</Text>
         <FormField name="email" label="Email" />
         <FormField
           name="password"
@@ -125,20 +144,20 @@ const Signup = () => {
           secureTextEntry
           textContentType="password"
         />
-        <SiteUrlSetter></SiteUrlSetter>
-        <SubmitButton title="Sign Up" />
-      </>
+        <SiteUrlSetter />
+        <SubmitButton style={styles.loginSubmitContainer} title="Sign Up" />
+      </View>
     </Formik>
   );
 };
 
-const LoginForm = () => {
-  return (
-    <>
+const LoginForm = () => (
+  <SafeAreaView style={styles.outerContainer}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Login />
       <Signup />
-    </>
-  );
-};
+    </ScrollView>
+  </SafeAreaView>
+);
 
 export default LoginForm;
