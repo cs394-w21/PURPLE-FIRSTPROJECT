@@ -27,7 +27,7 @@ const sharedContainerStyles = {
 };
 
 const Login = () => {
-  const login = useLogin();
+  const { login, loginError } = useLogin();
   const { width } = useWindowDimensions();
   return (
     <Formik
@@ -49,6 +49,9 @@ const Login = () => {
           textContentType="password"
         />
         <SubmitButton style={styles.loginSubmitContainer} title="Login" />
+        {loginError ? (
+          <Text style={styles.uniquenessError}>{loginError}</Text>
+        ) : null}
       </View>
     </Formik>
   );

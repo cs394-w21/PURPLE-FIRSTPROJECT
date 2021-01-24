@@ -21,11 +21,13 @@ const FieldList = (props) => {
         name={name}
         render={(arrayHelpers) => (
           <>
-            {value.map((resumeSlice, index) => (
-              <View key={resumeSlice.id} style={styles.listItem}>
-                <Component remove={arrayHelpers.remove} index={index} />
-              </View>
-            ))}
+            {Array.isArray(value)
+              ? value.map((resumeSlice, index) => (
+                  <View key={resumeSlice.id} style={styles.listItem}>
+                    <Component remove={arrayHelpers.remove} index={index} />
+                  </View>
+                ))
+              : null}
             <Button
               onPress={() => arrayHelpers.push(generateNewSlice())}
               title={`Add ${label}`}

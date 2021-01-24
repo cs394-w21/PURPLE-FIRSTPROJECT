@@ -33,7 +33,7 @@ export const useLogin = () => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
     } catch (error) {
-      setLoginError(error);
+      setLoginError(error.message);
     }
   }, []);
   return {
@@ -79,25 +79,35 @@ export const getSiteSet = async () =>
       );
   });
 
+const validateSiteUrl = async ({ siteUrl }) => {
+  const existingSiteUrls = await getSiteSet();
+  if (existingSiteUrls.has(siteUrl)) {
+    throw new Error(
+      "Someone else has a resume at that location. Please choose another one."
+    );
+  }
+};
+
+const makeNewUser = async ({ email, password, siteUrl }) => {
+  const authCredential = await firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password);
+  const {
+    user: { uid },
+  } = authCredential;
+  firebase.database().ref(`/users/${uid}`).set({
+    siteUrl,
+  });
+};
+
 export const useSignup = () => {
   const [signupError, setSignInError] = React.useState(null);
   const signup = React.useCallback(async (values) => {
-    const { siteUrl, email, password } = values;
-    const existingSiteUrls = await getSiteSet();
-    if (existingSiteUrls.has(siteUrl)) {
-      setSignInError(
-        "Someone else has a resume at that location. Please choose another one."
-      );
-      return;
-    }
     try {
-      const authCredential = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
-      const { user } = authCredential;
-      await user.updateProfile({ siteUrl });
+      await validateSiteUrl(values);
+      await makeNewUser(values);
     } catch (error) {
-      setSignInError(error);
+      setSignInError(error.message);
     }
   }, []);
   return { signup, signupError };

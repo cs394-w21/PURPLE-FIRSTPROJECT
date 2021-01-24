@@ -31,11 +31,11 @@ const useHandleAuthChanges = () => {
 
 const guestUser = { role: "guest", auth: null };
 
-const useUpdateUserRole = () => {
+const useUpdateUserInfo = () => {
   const user = useUser();
   const setUser = useSetUser();
   const { auth } = user;
-  const setUserRole = React.useCallback(
+  const setUserInfo = React.useCallback(
     (snap) => {
       setUser((oldUser) => ({ ...oldUser, ...snap.val() }));
     },
@@ -47,15 +47,15 @@ const useUpdateUserRole = () => {
       setUser(guestUser);
     } else {
       db = firebase.database().ref("users").child(auth.uid);
-      db.on("value", setUserRole, window.alert);
+      db.on("value", setUserInfo, window.alert);
     }
-    return () => db && db.off("value", setUserRole);
-  }, [setUserRole, setUser, auth]);
+    return () => db && db.off("value", setUserInfo);
+  }, [setUserInfo, setUser, auth]);
 };
 
 const FirebaseUserSubscriber = ({ children }) => {
   useHandleAuthChanges();
-  useUpdateUserRole();
+  useUpdateUserInfo();
   return <>{children}</>;
 };
 FirebaseUserSubscriber.propTypes = {

@@ -1,16 +1,6 @@
 import React from "react";
 import * as Yup from "yup";
-import { firebase } from "../src/utils/firebase";
-
-const intoFirebaseObject = (array) =>
-  array.reduce((acc, el, index) => ({ ...acc, [index]: el }), {});
-
-const mapFormToDb = (formValues) => ({
-  ...formValues,
-  experience: intoFirebaseObject(formValues.experience),
-  education: intoFirebaseObject(formValues.education),
-  skills: intoFirebaseObject(formValues.skills),
-});
+import { firebase, mapFormToDb } from "../src/utils/firebase";
 
 const database = firebase.database();
 
@@ -63,13 +53,3 @@ export const resumeSchema = Yup.object().shape({
   experience: experienceSchema,
   skills: skillSchema,
 });
-
-export const defaultInitialValues = {
-  name: "",
-  email: "",
-  location: "",
-  phone: "",
-  education: [],
-  experience: [],
-  skills: [],
-};

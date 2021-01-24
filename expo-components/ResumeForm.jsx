@@ -3,17 +3,14 @@ import { Text, View, ScrollView, SafeAreaView, Button } from "react-native";
 import { Formik } from "formik";
 import PropTypes from "prop-types";
 import styles from "../expo-utils/styles";
-import {
-  useResumeForm,
-  resumeSchema,
-  defaultInitialValues,
-} from "../expo-utils/resume-form";
+import { useResumeForm, resumeSchema } from "../expo-utils/resume-form";
 import BasicInfo from "./BasicInfo";
 import Skills from "./Skills";
 import Education from "./Education";
 import Experience from "./Experience";
 import useViewWebsite from "../src/hooks/useViewWebsite";
 import SubmitButton from "./FormSubmitButton";
+import useUser from "../expo-utils/useUser";
 import { useLogout } from "../expo-utils/authHooks";
 
 const resumePropTypes = PropTypes.shape({
@@ -29,7 +26,7 @@ const resumePropTypes = PropTypes.shape({
       description: PropTypes.string.isRequired,
       degree: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
   experience: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -38,22 +35,23 @@ const resumePropTypes = PropTypes.shape({
       description: PropTypes.string.isRequired,
       role: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
   skills: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
 });
 
 const FormShell = (props) => {
   const { resume, children } = props;
-  const { submitForm } = useResumeForm("unique-ID");
+  const user = useUser();
+  const { submitForm } = useResumeForm(user.siteUrl);
   return (
     <Formik
       validationSchema={resumeSchema}
-      initialValues={resume || defaultInitialValues}
+      initialValues={resume}
       onSubmit={submitForm}
       validateOnChange={false}
     >
@@ -93,8 +91,8 @@ const ResumeForm = (props) => {
   return (
     <SafeAreaView style={styles.outerContainer}>
       <ScrollView contentContainerStyle={styles.container}>
-        <FormIntro />
         <FormShell resume={resume}>
+          <FormIntro />
           <BasicInfo />
           <Education />
           <Experience />

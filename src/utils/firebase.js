@@ -14,5 +14,20 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const intoFirebaseObject = (array) =>
+  array.reduce((acc, el, index) => ({ ...acc, [index]: el }), {});
+
+const overwriteArray = (object, key) => {
+  const maybeArray = object[key];
+  return Array.isArray(maybeArray)
+    ? { ...object, [key]: intoFirebaseObject(maybeArray) }
+    : object;
+};
+
+const mapArraysToFirebaseObjects = (object) =>
+  Object.keys(object).reduce(overwriteArray, { ...object });
+
+const mapFormToDb = (formValues) => mapArraysToFirebaseObjects(formValues);
+
 // eslint-disable-next-line import/prefer-default-export
-export { firebase };
+export { firebase, mapFormToDb };
