@@ -29,7 +29,7 @@ const useHandleAuthChanges = () => {
   }, [setUser]);
 };
 
-const guestUser = { role: "guest", auth: null };
+const guestUser = { auth: null };
 
 const useUpdateUserInfo = () => {
   const user = useUser();

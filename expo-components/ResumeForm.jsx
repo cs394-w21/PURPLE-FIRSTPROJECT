@@ -8,7 +8,7 @@ import BasicInfo from "./BasicInfo";
 import Skills from "./Skills";
 import Education from "./Education";
 import Experience from "./Experience";
-import useViewWebsite from "../src/hooks/useViewWebsite";
+import useViewWebsite from "../expo-utils/useViewWebsite";
 import SubmitButton from "./FormSubmitButton";
 import useUser from "../expo-utils/useUser";
 import { useLogout } from "../expo-utils/authHooks";
@@ -75,6 +75,7 @@ const FormIntro = () => {
     <View style={styles.formIntroContainer}>
       <Text style={styles.formTitle}>Edit Your Resume</Text>
       <View style={styles.introContainerButtonContainer}>
+        <SubmitButton style={styles.introContainerButton} title="Save" />
         <View style={styles.introContainerButton}>
           <Button onPress={viewWebsite} title="View Website" />
         </View>
