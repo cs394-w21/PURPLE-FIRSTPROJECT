@@ -5,52 +5,61 @@ import PropTypes from "prop-types";
 import ErrorHandler from "./ErrorHandler";
 import styles from "../expo-utils/styles";
 
-const FormInputInner = (props) => {
-  const { field, form, meta } = props;
-  return (
-    <>
-      <TextInput
-        style={styles.formField}
-        value={field.value}
-        onChangeText={(text) => form.setFieldValue(field.name, text)}
-        onBlur={() => form.setFieldTouched(field.name, true)}
-      />
-      <ErrorHandler meta={meta} />
-    </>
-  );
-};
-
-FormInputInner.propTypes = {
-  field: PropTypes.shape({
-    // eslint-disable-next-line react/forbid-prop-types
-    value: PropTypes.any.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  form: PropTypes.shape({
-    setFieldValue: PropTypes.func.isRequired,
-    setFieldTouched: PropTypes.func.isRequired,
-  }).isRequired,
-  meta: PropTypes.shape({
-    error: PropTypes.string.isRequired,
-    touched: PropTypes.bool.isRequired,
-  }).isRequired,
-};
-
 const FormInput = (props) => {
-  const { name } = props;
+  const { name, autoCapitalize, secureTextEntry, textContentType } = props;
+  const FormInputInner = React.useCallback(
+    (renderProps) => {
+      const { field, form, meta } = renderProps;
+      return (
+        <>
+          <TextInput
+            style={styles.formField}
+            value={field.value}
+            onChangeText={(text) => form.setFieldValue(field.name, text)}
+            onBlur={() => form.setFieldTouched(field.name, true)}
+            textContentType={textContentType}
+            secureTextEntry={secureTextEntry}
+            autoCapitalize={autoCapitalize}
+          />
+          <ErrorHandler meta={meta} />
+        </>
+      );
+    },
+    [autoCapitalize, secureTextEntry, textContentType]
+  );
   return <FastField name={name}>{FormInputInner}</FastField>;
 };
 
 FormInput.propTypes = {
   name: PropTypes.string.isRequired,
+  autoCapitalize: PropTypes.string,
+  secureTextEntry: PropTypes.bool,
+  textContentType: PropTypes.string,
+};
+
+FormInput.defaultProps = {
+  secureTextEntry: false,
+  autoCapitalize: "",
+  textContentType: "",
 };
 
 const FormField = (props) => {
-  const { name, label } = props;
+  const {
+    name,
+    label,
+    autoCapitalize,
+    secureTextEntry,
+    textContentType,
+  } = props;
   return (
     <View style={styles.formInputContainer}>
       <Text style={styles.formLabel}>{label}</Text>
-      <FormInput name={name} />
+      <FormInput
+        name={name}
+        textContentType={textContentType}
+        secureTextEntry={secureTextEntry}
+        autoCapitalize={autoCapitalize}
+      />
     </View>
   );
 };
@@ -58,6 +67,15 @@ const FormField = (props) => {
 FormField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  autoCapitalize: PropTypes.string,
+  secureTextEntry: PropTypes.bool,
+  textContentType: PropTypes.string,
+};
+
+FormField.defaultProps = {
+  secureTextEntry: false,
+  autoCapitalize: "",
+  textContentType: "",
 };
 
 export default FormField;
