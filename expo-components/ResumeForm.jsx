@@ -14,6 +14,7 @@ import Education from "./Education";
 import Experience from "./Experience";
 import useViewWebsite from "../src/hooks/useViewWebsite";
 import SubmitButton from "./FormSubmitButton";
+import { useLogout } from "../expo-utils/authHooks";
 
 const resumePropTypes = PropTypes.shape({
   name: PropTypes.string.isRequired,
@@ -71,10 +72,18 @@ FormShell.propTypes = {
 
 const FormIntro = () => {
   const viewWebsite = useViewWebsite();
+  const logout = useLogout();
   return (
     <View style={styles.formIntroContainer}>
       <Text style={styles.formTitle}>Edit Your Resume</Text>
-      <Button onPress={viewWebsite} title="View Website" />
+      <View style={styles.introContainerButtonContainer}>
+        <View style={styles.introContainerButton}>
+          <Button onPress={viewWebsite} title="View Website" />
+        </View>
+        <View style={styles.introContainerButton}>
+          <Button onPress={logout} title="Log Out" />
+        </View>
+      </View>
     </View>
   );
 };

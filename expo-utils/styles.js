@@ -19,6 +19,15 @@ export default StyleSheet.create({
     borderWidth: 3,
     borderColor: "black",
   },
+  introContainerButtonContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  introContainerButton: {
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",
