@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ScrollView, SafeAreaView, Button } from "react-native";
+import { Text, View, Button } from "react-native";
 import { Formik } from "formik";
 import PropTypes from "prop-types";
 import styles from "../expo-utils/styles";
@@ -90,18 +90,14 @@ const FormIntro = () => {
 const ResumeForm = (props) => {
   const { resume } = props;
   return (
-    <SafeAreaView style={styles.outerContainer}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <FormShell resume={resume}>
-          <FormIntro />
-          <BasicInfo />
-          <Education />
-          <Experience />
-          <Skills />
-          <SubmitButton title="Save" />
-        </FormShell>
-      </ScrollView>
-    </SafeAreaView>
+    <FormShell resume={resume}>
+      <FormIntro />
+      <BasicInfo />
+      <Education />
+      <Experience />
+      <Skills />
+      <SubmitButton title="Save" />
+    </FormShell>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import * as Yup from "yup";
+import Toast from "react-native-toast-message";
 import { firebase, mapFormToDb } from "../src/utils/firebase";
 
 const database = firebase.database();
@@ -7,8 +8,10 @@ const database = firebase.database();
 export const useResumeForm = (resumeId) => {
   const submitForm = React.useCallback(
     (formValues) => {
-      // eslint-disable-next-line no-console
       database.ref(`/resumes/${resumeId}`).set(mapFormToDb(formValues));
+      Toast.show({
+        text1: "Saved successfully!",
+      });
     },
     [resumeId]
   );

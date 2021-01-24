@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  useWindowDimensions,
-} from "react-native";
+import { View, Text, useWindowDimensions } from "react-native";
 import { Formik, useField } from "formik";
 import SubmitButton from "./FormSubmitButton";
 import FormField from "./FormField";
@@ -110,12 +104,10 @@ const Signup = () => {
 };
 
 const LoginForm = () => (
-  <SafeAreaView style={styles.outerContainer}>
-    <ScrollView contentContainerStyle={styles.container}>
-      <Login />
-      <Signup />
-    </ScrollView>
-  </SafeAreaView>
+  <>
+    <Login />
+    <Signup />
+  </>
 );
 
 export default LoginForm;

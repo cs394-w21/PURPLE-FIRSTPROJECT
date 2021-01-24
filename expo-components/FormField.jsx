@@ -39,8 +39,8 @@ FormInput.propTypes = {
 
 FormInput.defaultProps = {
   secureTextEntry: false,
-  autoCapitalize: "",
-  textContentType: "",
+  autoCapitalize: "none",
+  textContentType: "none",
 };
 
 const FormField = (props) => {
@@ -74,8 +74,8 @@ FormField.propTypes = {
 
 FormField.defaultProps = {
   secureTextEntry: false,
-  autoCapitalize: "",
-  textContentType: "",
+  autoCapitalize: "none",
+  textContentType: "none",
 };
 
 export default FormField;
