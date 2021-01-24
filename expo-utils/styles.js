@@ -70,6 +70,11 @@ export default StyleSheet.create({
     color: "red",
     fontWeight: "bold",
   },
+  uniquenessError: {
+    color: "red",
+    fontWeight: "bold",
+    marginTop: 10,
+  },
   container: {
     alignItems: "center",
   },

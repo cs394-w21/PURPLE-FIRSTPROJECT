@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import SubmitButton from "./FormSubmitButton";
 import FormField from "./FormField";
 import styles from "../expo-utils/styles";
+import { firebase } from "../src/utils/firebase";
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -29,10 +30,20 @@ const loginInitialValues = {
 };
 
 const useLogin = () => {
-  const login = React.useCallback(() => {
-    console.log("Hey! Figure out how to login!");
+  const [loginError, setLoginError] = React.useState(null);
+  const login = React.useCallback(async (values) => {
+    const { email, password } = values;
+    setLoginError(null);
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      setLoginError(error);
+    }
   }, []);
-  return login;
+  return {
+    login,
+    loginError,
+  };
 };
 
 const sharedContainerStyles = {
@@ -107,15 +118,44 @@ const signupInitialValues = {
   siteUrl: "",
 };
 
+const getSiteSet = async () =>
+  new Promise((resolve, reject) => {
+    firebase
+      .database()
+      .ref("/resumes")
+      .once(
+        "value",
+        (snap) => resolve(new Set(Object.keys(snap.val()))),
+        reject
+      );
+  });
+
 const useSignup = () => {
-  const signup = React.useCallback(() => {
-    console.log("Hey! Figure out how to sign up!");
+  const [signupError, setSignInError] = React.useState(null);
+  const signup = React.useCallback(async (values) => {
+    const { siteUrl, email, password } = values;
+    const existingSiteUrls = await getSiteSet();
+    if (existingSiteUrls.has(siteUrl)) {
+      setSignInError(
+        "Someone else has a resume at that location. Please choose another one."
+      );
+      return;
+    }
+    try {
+      const authCredential = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
+      const { user } = authCredential;
+      await user.updateProfile({ siteUrl });
+    } catch (error) {
+      setSignInError(error);
+    }
   }, []);
-  return signup;
+  return { signup, signupError };
 };
 
 const Signup = () => {
-  const signup = useSignup();
+  const { signup, signupError } = useSignup();
   const { width } = useWindowDimensions();
   return (
     <Formik
@@ -145,6 +185,9 @@ const Signup = () => {
           textContentType="password"
         />
         <SiteUrlSetter />
+        {signupError ? (
+          <Text style={styles.uniquenessError}>{signupError}</Text>
+        ) : null}
         <SubmitButton style={styles.loginSubmitContainer} title="Sign Up" />
       </View>
     </Formik>
