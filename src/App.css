@@ -1,9 +1,15 @@
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 .pdf-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 16px;
-  font-size: 16pt;
+  margin: 5px;
+  font-size: 20pt;
+  font-weight: 300;
 }
 
 .container {
@@ -11,7 +17,8 @@
   flex-direction: column;
   background-color: white;
   align-items: center;
-  padding: 20;
+  padding-bottom: 20px;
+  padding-top: 5px;
 }
 
 .section-container {
@@ -22,61 +29,72 @@
 }
 
 .basic-info-container {
-  padding: 20;
+  padding: 10px;
   text-align: center;
 }
 
 .name {
   color: black;
-  font-size: 40;
-  padding: 5;
+  font-size: 35pt;
+  font-weight: 500;
+  padding: 5px;
+  padding-bottom: 20px;
 }
 
+.email,
+.text {
+  font-size: 20pt;
+  font-weight: 300;
+}
 .email {
   color: blue;
   text-decoration-line: underline;
-  font-size: 20;
 }
 
 .text {
   color: black;
-  font-size: 20;
 }
 
 .single-section-container {
-  padding: 20;
-  border-width: 3;
+  padding: 20px;
+  border-width: 3px;
   border-color: black;
   border-style: solid;
-  margin: 8;
-  max-width: 310;
+  margin: 8px;
+  max-width: 310px;
 }
 
 .item-container {
-  padding-top: 16;
+  padding-top: 16px;
 }
 
 .section-title {
   color: black;
-  font-size: 40;
-  padding-top: 5;
-  padding-bottom: 5;
+  font-size: 35pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: 400;
 }
 
 .item-text,
 .item-name,
 .item-value {
   color: black;
-  font-size: 20;
-  padding: 2;
+  font-size: 18pt;
+  padding: 2px;
+}
+
+.item-text {
+  font-weight: 300;
 }
 
 .item-name {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .item-value {
   font-style: italic;
-  padding-top: 5;
-  padding-bottom: 5;
+  font-weight: 200;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

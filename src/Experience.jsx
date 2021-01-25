@@ -1,63 +1,16 @@
 import React from "react";
-// import { StyleSheet, Text, View } from "react-native";
 import PropTypes from "prop-types";
-
-// const text = {
-//   color: "black",
-//   fontSize: 20,
-//   padding: 2,
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     padding: 20,
-//     borderWidth: 3,
-//     borderColor: "black",
-//     borderStyle: "solid",
-//     margin: 8,
-//     maxWidth: 310,
-//   },
-//   title: {
-//     color: "black",
-//     fontSize: 40,
-//     paddingTop: 5,
-//     paddingBottom: 5,
-//   },
-//   itemContainer: {
-//     paddingTop: 16,
-//   },
-//   text,
-//   name: {
-//     ...text,
-//     fontWeight: "bold",
-//   },
-//   role: {
-//     ...text,
-//     fontStyle: "italic",
-//     paddingTop: 5,
-//     paddingBottom: 5,
-//   },
-// });
 
 const ExperienceItem = (props) => {
   const { name, start, stop, role, description } = props;
   return (
-    // <View style={styles.itemContainer}>
-    //   <Text style={styles.name}>{name}</Text>
-    //   <Text style={styles.text}>
-    //     {start}-{stop}
-    //   </Text>
-    //   <Text style={styles.role}>{role}</Text>
-    //   <Text style={styles.text}>{description}</Text>
-    // </View>
-
     <div className="item-container">
-      <p className="item-name">{name}</p>
-      <p className="item-text">
+      <div className="item-name">{name}</div>
+      <div className="item-text">
         {start}-{stop}
-      </p>
-      <p className="item-value">{role}</p>
-      <p className="item-text">{description}</p>
+      </div>
+      <div className="item-value">{role}</div>
+      <div className="item-text">{description}</div>
     </div>
   );
 };
@@ -76,7 +29,7 @@ const Experience = (props) => {
   const { experience } = props;
   return (
     <div className="single-section-container">
-      <h2 className="section-title">Experience</h2>
+      <div className="section-title">Experience</div>
       {experience.map((educationItem) => (
         <ExperienceItem
           key={educationItem.name}
