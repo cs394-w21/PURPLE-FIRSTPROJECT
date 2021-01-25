@@ -24,10 +24,10 @@ const BasicInfo = (props) => {
   const { email, name, phone, location } = props;
   return (
     <View style={styles.basicInfo}>
-      <Text>{name}</Text>
-      <Text>{email}</Text>
-      <Text>{phone}</Text>
-      <Text>{location}</Text>
+      <Text>Name: {name}</Text>
+      <Text>Email: {email}</Text>
+      <Text>Phone: {phone}</Text>
+      <Text>Location: {location}</Text>
     </View>
   );
 };
@@ -55,6 +55,11 @@ const EducationItemProps = {
   stop: PropTypes.string.isRequired,
 };
 
+const SkillItemProps = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+};
+
 const ExperienceItem = (props) => {
   const { description, name, role, start, stop } = props;
   return (
@@ -71,7 +76,7 @@ const ExperienceList = (props) => {
   const { experience } = props;
   return experience.map((experienceItem) => (
     <ExperienceItem
-      key={experienceItem.name}
+      key={experienceItem.id}
       name={experienceItem.name}
       role={experienceItem.role}
       start={experienceItem.start}
@@ -101,7 +106,7 @@ const EducationList = (props) => {
   const { education } = props;
   return education.map((educationItem) => (
     <EducationItem
-      key={educationItem.name}
+      key={educationItem.id}
       name={educationItem.name}
       degree={educationItem.degree}
       description={educationItem.description}
@@ -111,8 +116,31 @@ const EducationList = (props) => {
   ));
 };
 
+const SkillItem = (props) => {
+  const { label, value } = props;
+  return (
+    <View style={styles.basicInfo}>
+      <Text>{label}</Text>
+      <Text>{value}</Text>
+    </View>
+  );
+};
+
+SkillItem.propTypes = SkillItemProps;
+
+const SkillList = (props) => {
+  const { skills } = props;
+  return skills.map((skillItem) => (
+    <SkillItem
+      key={skillItem.id}
+      label={skillItem.label}
+      value={skillItem.value}
+    />
+  ));
+};
+
 /* eslint-disable react/prop-types, arrow-body-style */
-const Pdf = ({ resume, loading }) => {
+const Resume = ({ resume, loading }) => {
   if (loading) return <Document />;
   return (
     <Document>
@@ -123,14 +151,28 @@ const Pdf = ({ resume, loading }) => {
           phone={resume.phone}
           location={resume.location}
         />
-        <Text style={section}>Education</Text>
-        <EducationList education={resume.education} />
-        <Text style={section}>Experience</Text>
-        <ExperienceList experience={resume.experience} />
+        {resume.education ? (
+          <>
+            <Text style={section}>Education</Text>
+            <EducationList education={resume.education} />
+          </>
+        ) : null}
+        {resume.experience ? (
+          <>
+            <Text style={section}>Experience</Text>
+            <ExperienceList experience={resume.experience} />
+          </>
+        ) : null}
+        {resume.experience ? (
+          <>
+            <Text style={section}>Skills</Text>
+            <SkillList skills={resume.skills} />
+          </>
+        ) : null}
       </Page>
     </Document>
   );
 };
 /* eslint-enable react/prop-types, arrow-body-style */
 
-export default Pdf;
+export default Resume;

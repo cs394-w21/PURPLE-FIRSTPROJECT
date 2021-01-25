@@ -14,3 +14,8 @@
 .pdf-container > a {
   font-size: 16pt;
 }
+
+.red {
+  color: red;
+  text-align: center;
+}
