@@ -31,8 +31,8 @@ AuthChecker.propTypes = {
 };
 
 const App = () => (
-  <SafeAreaView style={styles.outerContainer}>
-    <SafeAreaProvider>
+  <SafeAreaProvider>
+    <SafeAreaView style={styles.outerContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <UserProvider>
           <ToastBannerProvider>
@@ -43,8 +43,8 @@ const App = () => (
           </ToastBannerProvider>
         </UserProvider>
       </ScrollView>
-    </SafeAreaProvider>
-  </SafeAreaView>
+    </SafeAreaView>
+  </SafeAreaProvider>
 );
 
 export default App;

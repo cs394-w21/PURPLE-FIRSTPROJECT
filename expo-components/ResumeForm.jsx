@@ -96,7 +96,6 @@ const ResumeForm = (props) => {
       <Education />
       <Experience />
       <Skills />
-      <SubmitButton title="Save" />
     </FormShell>
   );
 };

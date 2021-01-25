@@ -18,7 +18,7 @@ export default StyleSheet.create({
     padding: 10,
     borderWidth: 3,
     borderColor: "black",
-    marginTop: 100,
+    marginTop: 65,
   },
   introContainerButtonContainer: {
     display: "flex",
@@ -88,10 +88,12 @@ export default StyleSheet.create({
   container: {
     alignItems: "center",
   },
-  successBanner: {
+  notificationBanner: {
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
     marginHorizontal: 20,
+    textAlign: "center",
+    paddingVertical: 20,
   },
 });

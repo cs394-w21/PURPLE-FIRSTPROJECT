@@ -2,18 +2,35 @@ import React from "react";
 import * as Yup from "yup";
 import { useToastBannerToggler, Transition } from "react-native-toast-banner";
 import { Text } from "react-native";
+import PropTypes from "prop-types";
 import { firebase, mapFormToDb } from "../src/utils/firebase";
 import styles from "./styles";
 
-const SuccessBanner = () => (
-  <Text style={styles.successBanner}>Saved successfully!</Text>
-);
+const NotificationBanner = (props) => {
+  const { text } = props;
+  return <Text style={styles.notificationBanner}>{text}</Text>;
+};
 
-const bannerConfig = {
-  contentView: <SuccessBanner />,
-  backgroundColor: "green",
+NotificationBanner.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+const baseBannerConfig = {
   duration: 2000,
   transitions: [Transition.FadeInOut],
+};
+
+const bannerConfig = {
+  success: {
+    ...baseBannerConfig,
+    backgroundColor: "green",
+    contentView: <NotificationBanner text="Saved successfully!" />,
+  },
+  failure: {
+    ...baseBannerConfig,
+    backgroundColor: "red",
+    contentView: <NotificationBanner text="Error when saving!" />,
+  },
 };
 
 const database = firebase.database();
@@ -22,8 +39,12 @@ export const useResumeForm = (resumeId) => {
   const { showBanner } = useToastBannerToggler();
   const submitForm = React.useCallback(
     (formValues) => {
-      database.ref(`/resumes/${resumeId}`).set(mapFormToDb(formValues));
-      showBanner(bannerConfig);
+      try {
+        database.ref(`/resumes/${resumeId}`).set(mapFormToDb(formValues));
+        showBanner(bannerConfig.success);
+      } catch (error) {
+        showBanner(bannerConfig.failure);
+      }
     },
     [resumeId, showBanner]
   );
