@@ -3,6 +3,23 @@ import { firebase } from "../utils/firebase";
 
 const database = firebase.database();
 
+export const defaultInitialValues = {
+  name: "",
+  email: "",
+  location: "",
+  phone: "",
+  education: [],
+  experience: [],
+  skills: [],
+};
+
+const getResume = (appData, resumeID) => {
+  if (appData === undefined) return null;
+  const { resumes } = appData;
+  if (resumes === undefined) return null;
+  return resumes[resumeID] || defaultInitialValues;
+};
+
 const useResume = (resumeID) => {
   const [appData, updateAppDataInternal] = useState("");
 
@@ -26,7 +43,7 @@ const useResume = (resumeID) => {
 
   return {
     loading: !appData,
-    resume: appData && appData.resumes[resumeID],
+    resume: getResume(appData, resumeID),
   };
 };
 

@@ -1,26 +1,18 @@
 import React from "react";
-import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import useResume from "./hooks/useResume";
-import ResumeDownloader from "./ResumeDownloader";
-import Resume from "./Resume";
 import "./App.css";
+import Pdf from "./components/Pdf";
+import ResumeView from "./components/ResumeView";
 
-const Pdf = () => {
-  const { loading, resume } = useResume("unique-ID");
+const App = () => {
+  const { loading, resume } = useResume(window.location.pathname.substring(1));
   if (loading) return <h1>Loading...</h1>;
   return (
-    <div className="pdf-container">
-      <PDFViewer width="100%" height="700px">
-        <Resume loading={loading} resume={resume} />
-      </PDFViewer>
-      <PDFDownloadLink
-        document={<Resume loading={loading} resume={resume} />}
-        fileName="resume.pdf"
-      >
-        {ResumeDownloader}
-      </PDFDownloadLink>
-    </div>
+    <>
+      <Pdf loading={loading} resume={resume} />
+      <ResumeView resume={resume} />
+    </>
   );
 };
 
-export default Pdf;
+export default App;
