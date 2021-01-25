@@ -42,3 +42,41 @@
   color: black;
   font-size: 20;
 }
+
+.single-section-container {
+  padding: 20;
+  border-width: 3;
+  border-color: black;
+  border-style: solid;
+  margin: 8;
+  max-width: 310;
+}
+
+.item-container {
+  padding-top: 16;
+}
+
+.section-title {
+  color: black;
+  font-size: 40;
+  padding-top: 5;
+  padding-bottom: 5;
+}
+
+.item-text,
+.item-name,
+.item-value {
+  color: black;
+  font-size: 20;
+  padding: 2;
+}
+
+.item-name {
+  font-weight: bold;
+}
+
+.item-value {
+  font-style: italic;
+  padding-top: 5;
+  padding-bottom: 5;
+}

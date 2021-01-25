@@ -50,13 +50,13 @@ const EducationItem = (props) => {
     //   <Text style={styles.degree}>{degree}</Text>
     //   <Text style={styles.text}>{description}</Text>
     // </View>
-    <div>
-      <p>{name}</p>
-      <p>
+    <div className="item-container">
+      <p className="item-name">{name}</p>
+      <p className="item-text">
         {start}-{stop}
       </p>
-      <p>{degree}</p>
-      <p>{description}</p>
+      <p className="item-value">{degree}</p>
+      <p className="item-text">{description}</p>
     </div>
   );
 };
@@ -87,8 +87,8 @@ const Education = (props) => {
     //     />
     //   ))}
     // </View>
-    <div>
-      <h2>Education</h2>
+    <div className="single-section-container">
+      <h2 className="section-title">Education</h2>
       {education.map((educationItem) => (
         <EducationItem
           key={educationItem.name}

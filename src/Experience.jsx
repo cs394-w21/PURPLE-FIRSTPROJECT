@@ -50,13 +50,14 @@ const ExperienceItem = (props) => {
     //   <Text style={styles.role}>{role}</Text>
     //   <Text style={styles.text}>{description}</Text>
     // </View>
-    <div>
-      <p>{name}</p>
-      <p>
+
+    <div className="item-container">
+      <p className="item-name">{name}</p>
+      <p className="item-text">
         {start}-{stop}
       </p>
-      <p>{role}</p>
-      <p>{description}</p>
+      <p className="item-value">{role}</p>
+      <p className="item-text">{description}</p>
     </div>
   );
 };
@@ -74,8 +75,8 @@ ExperienceItem.propTypes = ExperienceItemProps;
 const Experience = (props) => {
   const { experience } = props;
   return (
-    <div>
-      <h2>Experience</h2>
+    <div className="single-section-container">
+      <h2 className="section-title">Experience</h2>
       {experience.map((educationItem) => (
         <ExperienceItem
           key={educationItem.name}
