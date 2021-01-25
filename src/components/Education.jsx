@@ -1,42 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ExperienceItem = (props) => {
-  const { name, start, stop, role, description } = props;
+const EducationItem = (props) => {
+  const { name, start, stop, degree, description } = props;
   return (
     <div className="item-container">
       <div className="item-name">{name}</div>
       <div className="item-text">
         {start}-{stop}
       </div>
-      <div className="item-value">{role}</div>
+      <div className="item-value">{degree}</div>
       <div className="item-text">{description}</div>
     </div>
   );
 };
 
-const ExperienceItemProps = {
+const EducationItemProps = {
   name: PropTypes.string.isRequired,
   start: PropTypes.string.isRequired,
   stop: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
+  degree: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 
-ExperienceItem.propTypes = ExperienceItemProps;
+EducationItem.propTypes = EducationItemProps;
 
-const Experience = (props) => {
-  const { experience } = props;
+const Education = (props) => {
+  const { education } = props;
+  if (!education) return null;
   return (
     <div className="single-section-container">
-      <div className="section-title">Experience</div>
-      {experience.map((educationItem) => (
-        <ExperienceItem
-          key={educationItem.name}
+      <div className="section-title">Education</div>
+      {education.map((educationItem) => (
+        <EducationItem
+          key={educationItem.id}
           name={educationItem.name}
           start={educationItem.start}
           stop={educationItem.stop}
-          role={educationItem.role}
+          degree={educationItem.degree}
           description={educationItem.description}
         />
       ))}
@@ -44,11 +45,11 @@ const Experience = (props) => {
   );
 };
 
-export const ExperienceProps = {
-  experience: PropTypes.arrayOf(PropTypes.shape(ExperienceItemProps).isRequired)
+export const EducationProps = {
+  education: PropTypes.arrayOf(PropTypes.shape(EducationItemProps).isRequired)
     .isRequired,
 };
 
-Experience.propTypes = ExperienceProps;
+Education.propTypes = EducationProps;
 
-export default Experience;
+export default Education;

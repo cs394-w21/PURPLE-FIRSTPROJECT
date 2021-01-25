@@ -1,7 +1,7 @@
 import React from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import ResumeDownloader from "./ResumeDownloader";
-import Resume from "./Resume";
+import Resume from "./PdfResume";
 
 const Pdf = (props) => {
   // eslint-disable-next-line react/prop-types

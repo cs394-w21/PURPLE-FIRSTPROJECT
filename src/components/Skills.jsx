@@ -20,12 +20,13 @@ SkillItem.propTypes = SkillItemProps;
 
 const Skills = (props) => {
   const { skills } = props;
+  if (!skills) return null;
   return (
     <div className="single-section-container">
       <div className="section-title">Technical Skills</div>
       {skills.map((skillItem) => (
         <SkillItem
-          key={skillItem.label}
+          key={skillItem.id}
           label={skillItem.label}
           value={skillItem.value}
         />

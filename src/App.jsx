@@ -1,8 +1,8 @@
 import React from "react";
 import useResume from "./hooks/useResume";
 import "./App.css";
-import Pdf from "./Pdf";
-import ResumeView from "./ResumeView";
+import Pdf from "./components/Pdf";
+import ResumeView from "./components/ResumeView";
 
 const App = () => {
   const { loading, resume } = useResume(window.location.pathname.substring(1));
