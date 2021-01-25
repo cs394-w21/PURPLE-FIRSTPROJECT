@@ -1,6 +1,10 @@
 import React from "react";
 import { ScrollView, SafeAreaView } from "react-native";
-import ToastProvider from "react-native-toast-message";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import {
+  ToastBannerProvider,
+  ToastBannerPresenter,
+} from "react-native-toast-banner";
 import PropTypes from "prop-types";
 import useResume from "./src/hooks/useResume";
 import Loading from "./expo-components/Loading";
@@ -28,14 +32,18 @@ AuthChecker.propTypes = {
 
 const App = () => (
   <SafeAreaView style={styles.outerContainer}>
-    <ScrollView contentContainerStyle={styles.container}>
-      <UserProvider>
-        <ToastProvider ref={(ref) => ToastProvider.setRef(ref)} />
-        <AuthChecker>
-          <EditResume />
-        </AuthChecker>
-      </UserProvider>
-    </ScrollView>
+    <SafeAreaProvider>
+      <ScrollView contentContainerStyle={styles.container}>
+        <UserProvider>
+          <ToastBannerProvider>
+            <ToastBannerPresenter />
+            <AuthChecker>
+              <EditResume />
+            </AuthChecker>
+          </ToastBannerProvider>
+        </UserProvider>
+      </ScrollView>
+    </SafeAreaProvider>
   </SafeAreaView>
 );
 
