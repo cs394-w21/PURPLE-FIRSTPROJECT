@@ -2,17 +2,43 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.pdf-container > * {
   margin: 16px;
-}
-
-.pdf-container > a {
   font-size: 16pt;
 }
 
-.red {
-  color: red;
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  padding: 20;
+}
+
+.section-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.basic-info-container {
+  padding: 20;
   text-align: center;
+}
+
+.name {
+  color: black;
+  font-size: 40;
+  padding: 5;
+}
+
+.email {
+  color: blue;
+  text-decoration-line: underline;
+  font-size: 20;
+}
+
+.text {
+  color: black;
+  font-size: 20;
 }

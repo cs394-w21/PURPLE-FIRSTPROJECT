@@ -22,18 +22,11 @@ import PropTypes from "prop-types";
     fontSize: 20,
   },
 });
-
-const useEmailLink = (email) => {
-  const gotoEmail = React.useCallback(() => {
-    Linking.openURL(`mailto:${email}`);
-  }, [email]);
-  return gotoEmail;
-};
 */
+const getEmailLink = (email) => `mailto:${email}`;
 
 const BasicInfo = (props) => {
   const { name, phone, email, location } = props;
-  // const gotoEmail = useEmailLink(email);
   return (
     /*   <View style={styles.container}>
       <Text style={styles.name}>{name}</Text>
@@ -43,11 +36,15 @@ const BasicInfo = (props) => {
       </Text>
       <Text style={styles.text}>Location: {location}</Text>
   </View> */
-    <div>
-      <h1>{name}</h1>
-      <p>Phone: {phone}</p>
-      <p>Email: {email}</p>
-      <p>Location: {location}</p>
+    <div className="basic-info-container">
+      <h1 className="name">{name}</h1>
+      <p className="text">Phone: {phone}</p>
+      <p className="email">
+        <a target="_blank" href={getEmailLink(email)} rel="noreferrer">
+          Email: {email}
+        </a>
+      </p>
+      <p className="text">Location: {location}</p>
     </div>
   );
 };
