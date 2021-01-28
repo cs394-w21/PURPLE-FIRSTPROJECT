@@ -8,7 +8,8 @@
     "eject": "expo eject",
     "start:website": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "build:website": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
-    "test": "react-scripts test"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "husky": {
     "hooks": {
