@@ -13,4 +13,7 @@ describe("Our validation", () => {
   test("Detects the invalid strings2", () => {
     expect(validateSiteURL("ABC")).toEqual(true);
   });
+  test("Detects the undefined input", () => {
+    expect(validateSiteURL(undefined)).toEqual(false);
+  });
 });

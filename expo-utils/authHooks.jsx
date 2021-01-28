@@ -1,6 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { firebase } from "../src/utils/firebase";
+import validateSite from "../src/utils/validateSite";
 
 export const useLogout = () => {
   const logout = React.useCallback(() => {
@@ -57,6 +58,9 @@ export const signupValidationSchema = Yup.object().shape({
     .label("Confirm Password"),
   siteUrl: Yup.string()
     .required("Please enter a path for your site's URL")
+    .test("isValid", "Please enter a valid slug.", (value) =>
+      validateSite(value)
+    )
     .label("Site URL"),
 });
 

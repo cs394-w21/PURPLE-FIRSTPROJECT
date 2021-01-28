@@ -55,6 +55,7 @@ const validCharacters = new Set([
 ]);
 
 const validateSiteURL = (str) => {
+  if (typeof str !== "string") return false;
   return str.split("").every((char) => {
     return validCharacters.has(char);
   });
