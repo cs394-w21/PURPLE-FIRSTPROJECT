@@ -58,7 +58,7 @@ export const SiteUrlSetter = () => {
       <FormField name="siteUrl" label="Site URL" />
       <Text>
         Your website will be hosted at{" "}
-        {`?id=nervous-line.surge.sh/${value || ""}`}
+        {`nervous-line.surge.sh/?id=${value || ""}`}
       </Text>
     </>
   );
