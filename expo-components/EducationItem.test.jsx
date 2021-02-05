@@ -1,19 +1,19 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
 import { Formik } from "formik";
-import ExperienceItem from "./ExperienceItem";
+import EducationItem from "./EducationItem";
 
 describe("A component", () => {
   test("Renders all fields properly", () => {
     const { queryByText } = render(
       <Formik>
-        <ExperienceItem index={0} remove={() => {}}></ExperienceItem>
+        <EducationItem index={0} remove={() => {}}></EducationItem>
       </Formik>
     );
     expect(queryByText("Name")).not.toBe(null);
     expect(queryByText("Start")).not.toBe(null);
     expect(queryByText("Stop")).not.toBe(null);
-    expect(queryByText("Role")).not.toBe(null);
+    expect(queryByText("Degree")).not.toBe(null);
     expect(queryByText("Description")).not.toBe(null);
   });
 
@@ -21,7 +21,7 @@ describe("A component", () => {
     const fauxRemove = jest.fn();
     const { queryByText } = render(
       <Formik>
-        <ExperienceItem index={0} remove={fauxRemove}></ExperienceItem>
+        <EducationItem index={0} remove={fauxRemove}></EducationItem>
       </Formik>
     );
     const removeButton = queryByText("Remove");
