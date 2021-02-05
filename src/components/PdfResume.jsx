@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Link,
+} from "@react-pdf/renderer";
 
 const section = {
   margin: 10,
@@ -17,16 +24,23 @@ const styles = StyleSheet.create({
   basicInfo: {
     ...section,
     justifyContent: "center",
+    textAlign: "center",
+  },
+  name: {
+    margin: 20,
+    fontSize: 30,
+    fontWeight: 600,
   },
 });
 
 const BasicInfo = (props) => {
   const { email, name, phone, location } = props;
+  const getEmailLink = (emailID) => `mailto:${emailID}`;
   return (
     <View style={styles.basicInfo}>
-      <Text>Name: {name}</Text>
-      <Text>Email: {email}</Text>
+      <Text style={styles.name}>{name}</Text>
       <Text>Phone: {phone}</Text>
+      <Link href={getEmailLink(email)}> Email: {email}</Link>
       <Text>Location: {location}</Text>
     </View>
   );
