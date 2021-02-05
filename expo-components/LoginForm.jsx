@@ -51,13 +51,14 @@ const Login = () => {
   );
 };
 
-const SiteUrlSetter = () => {
+export const SiteUrlSetter = () => {
   const [{ value }] = useField("siteUrl");
   return (
     <>
       <FormField name="siteUrl" label="Site URL" />
       <Text>
-        Your website will be hosted at {`nervous-line.surge.sh/${value || ""}`}
+        Your website will be hosted at{" "}
+        {`?id=nervous-line.surge.sh/${value || ""}`}
       </Text>
     </>
   );
