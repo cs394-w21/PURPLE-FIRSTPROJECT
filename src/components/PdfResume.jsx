@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -10,8 +11,8 @@ import {
 } from "@react-pdf/renderer";
 
 const section = {
-  margin: 10,
-  padding: 10,
+  margin: 5,
+  padding: 5,
   flexGrow: 1,
 };
 
@@ -20,7 +21,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#ffffff",
   },
-  section,
+  sectionHeader: {
+    ...section,
+    fontSize: 25,
+    fontWeight: 600,
+  },
   basicInfo: {
     ...section,
     justifyContent: "center",
@@ -31,6 +36,18 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 600,
   },
+  email: {
+    color: "blue",
+    fontDecoration: "underline",
+  },
+  itemName: {
+    fontWeight: 12000,
+  },
+  sectionItem: {
+    textAlign: "left",
+    paddingLeft: 15,
+    paddingBottom: 10,
+  },
 });
 
 const BasicInfo = (props) => {
@@ -40,7 +57,10 @@ const BasicInfo = (props) => {
     <View style={styles.basicInfo}>
       <Text style={styles.name}>{name}</Text>
       <Text>Phone: {phone}</Text>
-      <Link href={getEmailLink(email)}> Email: {email}</Link>
+      <Link style={styles.email} src={getEmailLink(email)} target="_blank">
+        {" "}
+        Email: {email}
+      </Link>
       <Text>Location: {location}</Text>
     </View>
   );
@@ -105,10 +125,10 @@ ExperienceItem.propTypes = ExperienceItemProps;
 const EducationItem = (props) => {
   const { degree, description, name, start, stop } = props;
   return (
-    <View style={styles.basicInfo}>
-      <Text>{name}</Text>
-      <Text>{degree}</Text>
+    <View style={styles.sectionItem}>
+      <Text style={styles.itemName}>{name}</Text>
       <Text>{`${start} - ${stop}`}</Text>
+      <Text>{degree}</Text>
       <Text>{description}</Text>
     </View>
   );
@@ -167,7 +187,7 @@ const Resume = ({ resume, loading }) => {
         />
         {resume.education ? (
           <>
-            <Text style={section}>Education</Text>
+            <Text style={styles.sectionHeader}>Education</Text>
             <EducationList education={resume.education} />
           </>
         ) : null}
