@@ -223,8 +223,6 @@ const Resume = ({ resume, loading }) => {
             <ExperienceList experience={resume.experience} />
           </>
         ) : null}
-      </Page>
-      <Page size="A4" style={styles.page}>
         {resume.skills ? (
           <>
             <Text style={styles.sectionHeader}>Skills</Text>
