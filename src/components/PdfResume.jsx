@@ -1,32 +1,90 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import PropTypes from "prop-types";
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Link,
+} from "@react-pdf/renderer";
 
 const section = {
-  margin: 10,
-  padding: 10,
+  margin: 5,
+  padding: 5,
   flexGrow: 1,
+};
+
+const fonts = {
+  regular: "Times-Roman",
+  bold: "Times-Bold",
+  italic: "Times-Italic",
 };
 
 const styles = StyleSheet.create({
   page: {
+    fontFamily: fonts.regular,
     flexDirection: "column",
     backgroundColor: "#ffffff",
   },
-  section,
+  sectionHeader: {
+    fontFamily: fonts.regular,
+    fontSize: 25,
+    fontWeight: 600,
+    marginLeft: 20,
+  },
   basicInfo: {
     ...section,
+    fontFamily: fonts.regular,
     justifyContent: "center",
+    textAlign: "center",
+  },
+  name: {
+    fontFamily: fonts.bold,
+    margin: 20,
+    fontSize: 30,
+  },
+  email: {
+    fontFamily: fonts.regular,
+    color: "blue",
+  },
+  sectionItem: {
+    fontFamily: fonts.regular,
+    textAlign: "left",
+    padding: 15,
+    paddingLeft: 25,
+  },
+  itemName: {
+    fontFamily: fonts.bold,
+    fontSize: 20,
+  },
+  itemValue: {
+    fontFamily: fonts.italic,
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
+  itemText: {
+    fontFamily: fonts.regular,
+  },
+  itemLine: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    marginLeft: 20,
   },
 });
 
 const BasicInfo = (props) => {
   const { email, name, phone, location } = props;
+  const getEmailLink = (emailID) => `mailto:${emailID}`;
+
   return (
     <View style={styles.basicInfo}>
-      <Text>Name: {name}</Text>
-      <Text>Email: {email}</Text>
+      <Text style={styles.name}>{name}</Text>
       <Text>Phone: {phone}</Text>
+      <Text>
+        <Link src={getEmailLink(email)}>Email: {email}</Link>
+      </Text>
       <Text>Location: {location}</Text>
     </View>
   );
@@ -63,11 +121,11 @@ const SkillItemProps = {
 const ExperienceItem = (props) => {
   const { description, name, role, start, stop } = props;
   return (
-    <View style={styles.basicInfo}>
-      <Text>{name}</Text>
-      <Text>{role}</Text>
-      <Text>{`${start} - ${stop}`}</Text>
-      <Text>{description}</Text>
+    <View style={styles.sectionItem}>
+      <Text style={styles.itemName}>{name}</Text>
+      <Text style={styles.itemValue}>{role}</Text>
+      <Text style={styles.itemText}>{`${start} - ${stop}`}</Text>
+      <Text style={styles.itemText}>{description}</Text>
     </View>
   );
 };
@@ -91,11 +149,11 @@ ExperienceItem.propTypes = ExperienceItemProps;
 const EducationItem = (props) => {
   const { degree, description, name, start, stop } = props;
   return (
-    <View style={styles.basicInfo}>
-      <Text>{name}</Text>
-      <Text>{degree}</Text>
-      <Text>{`${start} - ${stop}`}</Text>
-      <Text>{description}</Text>
+    <View style={styles.sectionItem}>
+      <Text style={styles.itemName}>{name}</Text>
+      <Text style={styles.itemText}>{`${start} - ${stop}`}</Text>
+      <Text style={styles.itemValue}>{degree}</Text>
+      <Text style={styles.itemText}>{description}</Text>
     </View>
   );
 };
@@ -119,9 +177,9 @@ const EducationList = (props) => {
 const SkillItem = (props) => {
   const { label, value } = props;
   return (
-    <View style={styles.basicInfo}>
-      <Text>{label}</Text>
-      <Text>{value}</Text>
+    <View style={styles.sectionItem}>
+      <Text style={styles.itemName}>{label}</Text>
+      <Text style={styles.itemText}>{value}</Text>
     </View>
   );
 };
@@ -153,19 +211,24 @@ const Resume = ({ resume, loading }) => {
         />
         {resume.education ? (
           <>
-            <Text style={section}>Education</Text>
+            <Text style={styles.sectionHeader}>Education</Text>
+            <View style={styles.itemLine} />
             <EducationList education={resume.education} />
           </>
         ) : null}
         {resume.experience ? (
           <>
-            <Text style={section}>Experience</Text>
+            <Text style={styles.sectionHeader}>Experience</Text>
+            <View style={styles.itemLine} />
             <ExperienceList experience={resume.experience} />
           </>
         ) : null}
-        {resume.experience ? (
+      </Page>
+      <Page size="A4" style={styles.page}>
+        {resume.skills ? (
           <>
-            <Text style={section}>Skills</Text>
+            <Text style={styles.sectionHeader}>Skills</Text>
+            <View style={styles.itemLine} />
             <SkillList skills={resume.skills} />
           </>
         ) : null}
